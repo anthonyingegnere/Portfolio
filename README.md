@@ -1,4 +1,3 @@
-
 # Anthony Ingegnere's Coding Portfolio
 
 ---
