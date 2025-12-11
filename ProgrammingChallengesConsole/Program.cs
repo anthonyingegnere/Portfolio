@@ -11,7 +11,7 @@ int[] result = ProgrammingChallenges.FindSmallestAndBiggestNumbers(numbers);
 Console.WriteLine($"Smallest: {result[0]}, Biggest: {result[1]}");
 
 // 2.
-string hackerOutput = ProgrammingChallenges.HackerSpeak("Hello, this is another example.");
+string hackerOutput = ProgrammingChallenges.HackerSpeak("Hello, this is Another example.");
 Console.WriteLine(hackerOutput);
 
 // 3.
@@ -70,6 +70,6 @@ bool isFormatVaild = ProgrammingChallenges.FormatValidation(phoneNumberEntry);
 Console.WriteLine(isFormatVaild);
 
 // 10.
-int isThisPrime = 7537;
+int isThisPrime = -7537;
 bool primeCheckerOutput = ProgrammingChallenges.PrimeNumberChecker(isThisPrime);
 Console.WriteLine(primeCheckerOutput);

@@ -48,7 +48,7 @@ namespace ProgrammingChallengesLibrary
             // assign smallest and biggest to result
             result[0] = smallestNumber;
             result[1] = biggestNumber;
-            
+
             return result;
         }
 
@@ -63,36 +63,37 @@ namespace ProgrammingChallengesLibrary
                 // initialising a new variable so we can access c in our logic  to update it with the new char
                 char nextLetter = c;
 
-                //TODO: update to .ToLower on all but one to show working example
                 // so we check the value of c and if it matches the character we have specified, update it to the new character
-                switch (nextLetter)
+                switch (nextLetter.ToString().ToLower())
                 {
-                    case 'a':
-                    case 'A':
+                    
+                    case "a":
+                    //case 'A':
                         nextLetter = '4';
                         break;
 
-                    case 'e':
-                    case 'E':
+                    case "e":
+                    //case 'E':
                         nextLetter = '3';
                         break;
 
-                    case 'i':
-                    case 'I':
+                    case "i":
+                    //case 'I':
                         nextLetter = '1';
                         break;
 
-                    case 'o':
-                    case 'O':
+                    case "o":
+                    //case 'O':
                         nextLetter = '0';
                         break;
 
-                    case 's':
-                    case 'S':
+                    case "s":
+                    //case 'S':
                         nextLetter = '5';
                         break;
-                        
+
                     default:
+                        nextLetter = c;
                         break;
                 }
                 // here we build the new string by updating it with each indivdual letter
@@ -108,11 +109,10 @@ namespace ProgrammingChallengesLibrary
             int letterTotal = 0;
 
             // get the next character of the string
-            foreach (char nextChar in input)
+            foreach (char nextChar in input.ToLower())
             {
-                //TODO: update to use .ToLower() 
                 // check if it matches what we want (D)
-                if (nextChar == 'd' || nextChar == 'D')
+                if (nextChar == 'd')
                 {
                     // if it does, count it and add it to running total.
                     letterTotal++;
@@ -125,10 +125,13 @@ namespace ProgrammingChallengesLibrary
         // 4.
         public static string[] FizzBuzz(int[] input)
         {
+            // Method to take an int array and return if each value is divisible by 3 or 5 or both and assign a
+            // codeword to that value and return either the codeword or the original number if not divisible by any
+
             // declaring output variables
-            string isFizz = "Fizz";
-            string isBuzz = "Buzz";
-            string isFizzBuzz = "FizzBuzz";
+            string isFizz = "Fizz";          // Divisible by 3
+            string isBuzz = "Buzz";          // Divisible by 5
+            string isFizzBuzz = "FizzBuzz";  // Divisible by both
 
             string[] fizzBuzzResult = new string[input.Length];
 
@@ -176,22 +179,22 @@ namespace ProgrammingChallengesLibrary
             string fileNameResult = "";
 
             // get the last index of the filePath
-            //TODO: tell me why -1
+            // we use -1 so that if there is no '/' we will put the last index at the 0 position to account for the zero-based index
             int lastIndexOfSlash = -1;
 
-            // needs / because the last / will be where the fileName will start
+            // needs '/' because the last '/' will be where the fileName will start
             char slash = '/';
 
-            //TODO: add comments
+            // this loop will check each character of the string and then update the location of the last index if a '/' is present
             for (int i = 0; i < filePath.Length; i++)
-            {  
+            {
                 if (filePath[i] == slash)
                 {
                     lastIndexOfSlash = i;
                 }
             }
-            
-            // checks if there is a / in the filePath
+
+            // checks if there is a '/' in the filePath
             if (lastIndexOfSlash >= 0)
             {
                 // create a string containing the last part of filePath from the point of the last index
@@ -200,7 +203,7 @@ namespace ProgrammingChallengesLibrary
                     fileNameResult = fileNameResult + filePath[i].ToString();
                 }
             }
-            // if no / is present. Return the filePath
+            // if no '/' is present. Return the filePath
             else
             {
                 fileNameResult = filePath;
@@ -231,9 +234,8 @@ namespace ProgrammingChallengesLibrary
         public static decimal CalculateTheMean(int[] listOfNumbers)
         {
             // Mean Calculation - add the values together and divide by the total number of values
-            
-            //TODO: Write more comments
 
+            // declaring as decimal so we can get an accurate sum after equation
             decimal totalNumbersInList = listOfNumbers.Length;
             decimal sumOfNumbers = 0.00m;
 
@@ -246,7 +248,7 @@ namespace ProgrammingChallengesLibrary
             // perform mean calculation
             decimal meanCalculation = sumOfNumbers / totalNumbersInList;
 
-            // output result
+            // output result to 2 decimal places
             return Math.Round(meanCalculation, 2);
         }
 
@@ -270,8 +272,6 @@ namespace ProgrammingChallengesLibrary
         }
 
         // 9.
-
-        //TODO: one return
         public static bool FormatValidation(string phoneNumberInput)
         {
             // correct format example = (123) 456-7890
@@ -279,95 +279,62 @@ namespace ProgrammingChallengesLibrary
             // create variable to handle valid or invalid phone number entry
             bool isValidFormat = false;
 
-            //TODO: make this one if
-            // check the input is 14 characters long
-            if (phoneNumberInput.Length != 14)
+            // negative format validation prior to numerical validation
+            if (phoneNumberInput.Length != 14   // check if the input is not 14 characters long
+                || phoneNumberInput[0] != '('   // check if the indexed value at 0 is not '('
+                || phoneNumberInput[4] != ')'   // check if the indexed value at 4 is not ')'
+                || phoneNumberInput[5] != ' '   // check if the indexed value at 5 is not whitespace
+                || phoneNumberInput[9] != '-')  // check if the indexed value at 9 is not '-'
             {
-                return isValidFormat;
+                isValidFormat = false;
             }
-
-            // check the indexed value at 0 and 4 to ensure the area code () identifier is present
-            if (phoneNumberInput[0] != '(' && phoneNumberInput[4] != ')')
+            else
             {
-                return isValidFormat;
-            }
-
-            if (phoneNumberInput[4] != ')')
-            {
-                return isValidFormat;
-            }
-
-            // check the indexed value at 5 for whitespace
-            if (phoneNumberInput[5] != ' ')
-            {
-                return isValidFormat;
-            }
-
-            // check the indexed value at 9 for a -
-            if (phoneNumberInput[9] != '-')
-            {
-                return isValidFormat;
-            }
-
-            // Question: can I handle the validation here if i had access to .net library
-             
-            // check that each other character in the string is a numerical value between 0-9
-            for (int i = 0; i < phoneNumberInput.Length; i++)
-            {
-                // initialise a variable to access the value of i
-                char nextChar = phoneNumberInput[i];
-
-                //TODO: reverese the order. do the opposite indexes as a !=
-                // when the indexed position is at any of these spots. then execute the block within
-                if (i == 1 || i == 2 || i == 3 || i == 6 || i == 7 || i == 8 || i == 10 || i == 11 || i == 12 || i == 13)
+                // loops through the input and runs validation checks on the length of the string and the indexed values
+                for (int i = 0; i < phoneNumberInput.Length; i++)
                 {
-                    //TODO: update to char.IsDigit()
-                    if (nextChar == '1'
-                        || nextChar == '2'
-                        || nextChar == '3'
-                        || nextChar == '4'
-                        || nextChar == '5'
-                        || nextChar == '6'
-                        || nextChar == '7'
-                        || nextChar == '8'
-                        || nextChar == '9'
-                        || nextChar == '0')
+                    // initialise a variable to access the value of i
+                    char nextChar = phoneNumberInput[i];
+
+
+
+                    // when the indexed position is not any of these spots. then execute the block within
+                    if (i != 0 && i != 4 && i != 5 && i != 9)
                     {
-                        isValidFormat = true;
+                        // check if the value of nextChar is a digit
+                        if (!char.IsDigit(nextChar))
+                        {
+                            // if value is not a digit, break out the loop, no need to check any further
+                            isValidFormat = false;
+                            break;
+                        }
                     }
-                    else
-                    {
-                        isValidFormat = false;
-                        return isValidFormat;
-                    }  
                 }
-            }
+
+            }  
             return isValidFormat;
         }
 
         // 10.
-
-        //TODO: one return method
         public static bool PrimeNumberChecker(int isThisPrime)
         {
-            bool isPrimeNumber = true;
-            
-            // checks to make sure the number is a positive first.
-            if (isThisPrime <= 1)
-            {
-                isPrimeNumber = false;
-                return isPrimeNumber;
-            }
+            // establish that nothing is prime unless we say so
+            bool isPrimeNumber = false;
 
-            // check if the number is divisible by anything up to itself. 
+            // this loop will first check if the number is 1 or a negative and will not run if that is the case. 
             for (int i = 2; i < isThisPrime; i++)
             {
+                // using modulus operator to check if the number is evenly divisible by the current value of i
                 if (isThisPrime % i == 0)
                 {
-                    // if the number is divisible evenly by any of the numbers between 2 and itself, set isPrimeNumber and return it.
+                    // if the number is evenly divisible by any of the numbers between 2 and itself, set isPrimeNumber and return it.
                     isPrimeNumber = false;
-                    return isPrimeNumber;
-                } 
+                    break;
+                }
+                else
+                {
+                    isPrimeNumber = true;
+                }
             }
             return isPrimeNumber;
         }
