@@ -11,7 +11,7 @@ int[] result = ProgrammingChallenges.FindSmallestAndBiggestNumbers(numbers);
 Console.WriteLine($"Smallest: {result[0]}, Biggest: {result[1]}");
 
 // 2.
-string hackerOutput = ProgrammingChallenges.HackerSpeak("Hello, this is Another example.");
+string hackerOutput = ProgrammingChallenges.HackerSpeak("Hello, thiS is Another Example.");
 Console.WriteLine(hackerOutput);
 
 // 3.

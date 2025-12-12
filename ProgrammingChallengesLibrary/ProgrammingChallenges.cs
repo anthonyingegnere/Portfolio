@@ -13,8 +13,12 @@ namespace ProgrammingChallengesLibrary
         {
             return $"Hello, {name}";
         }
+        public static string WillFail()
+        {
+            throw new InvalidOperationException("pretending this a normal method, but something went wrong");
+        }
 
-        // 1.
+        // 1. Biggest / Smallest
         public static int[] FindSmallestAndBiggestNumbers(int[] numbers)
         {
             // declare an empty array that we will return.
@@ -52,77 +56,84 @@ namespace ProgrammingChallengesLibrary
             return result;
         }
 
-        // 2.
+        // 2. Hacker Speak
         public static string HackerSpeak(string input)
         {
             // declare an empty string so we have something to build into
             string result = "";
 
-            foreach (char c in input)
+            // we nest our main code in a if statement to validate input not being null
+            if (input != null)
             {
-                // initialising a new variable so we can access c in our logic  to update it with the new char
-                char nextLetter = c;
-
-                // so we check the value of c and if it matches the character we have specified, update it to the new character
-                switch (nextLetter.ToString().ToLower())
+                foreach (char c in input)
                 {
-                    
-                    case "a":
-                    //case 'A':
-                        nextLetter = '4';
-                        break;
+                    // initialising a new variable so we can access c in our logic  to update it with the new char
+                    char nextLetter = c;
 
-                    case "e":
-                    //case 'E':
-                        nextLetter = '3';
-                        break;
+                    // so we check the value of c and if it matches the character we have specified, update it to the new character
+                    switch (nextLetter.ToString().ToLower())
+                    {
 
-                    case "i":
-                    //case 'I':
-                        nextLetter = '1';
-                        break;
+                        case "a":
+                            //case 'A':
+                            nextLetter = '4';
+                            break;
 
-                    case "o":
-                    //case 'O':
-                        nextLetter = '0';
-                        break;
+                        case "e":
+                            //case 'E':
+                            nextLetter = '3';
+                            break;
 
-                    case "s":
-                    //case 'S':
-                        nextLetter = '5';
-                        break;
+                        case "i":
+                            //case 'I':
+                            nextLetter = '1';
+                            break;
 
-                    default:
-                        nextLetter = c;
-                        break;
-                }
-                // here we build the new string by updating it with each indivdual letter
-                result = result + nextLetter;
+                        case "o":
+                            //case 'O':
+                            nextLetter = '0';
+                            break;
+
+                        case "s":
+                            //case 'S':
+                            nextLetter = '5';
+                            break;
+
+                        default:
+                            nextLetter = c;
+                            break;
+                    }
+                    // here we build the new string by updating it with each indivdual letter
+                    result = result + nextLetter;
+                }                
             }
             return result;
         }
 
-        // 3.
+        // 3. Letter Counter
         public static int LetterCounter(string input)
         {
             // create a variable for the running total
             int letterTotal = 0;
 
-            // get the next character of the string
-            foreach (char nextChar in input.ToLower())
+            // we nest our main code in a if statement to validate input not being null
+            if (input != null)
             {
-                // check if it matches what we want (D)
-                if (nextChar == 'd')
+                // get the next character of the string
+                foreach (char nextChar in input.ToLower())
                 {
-                    // if it does, count it and add it to running total.
-                    letterTotal++;
-                }
+                    // check if it matches what we want (D)
+                    if (nextChar == 'd')
+                    {
+                        // if it does, count it and add it to running total.
+                        letterTotal++;
+                    }
+                }                
             }
-            // present total 
             return letterTotal;
         }
 
-        // 4.
+        // 4. FizzBuzz
         public static string[] FizzBuzz(int[] input)
         {
             // Method to take an int array and return if each value is divisible by 3 or 5 or both and assign a
@@ -170,7 +181,7 @@ namespace ProgrammingChallengesLibrary
             return fizzBuzzResult;
         }
 
-        // 5.
+        // 5. Get File Name
 
         // we are using an Optional parameter here for efficiency and readability on the main class
         public static string GetFileName(string filePath = "default/filepath")
@@ -213,7 +224,7 @@ namespace ProgrammingChallengesLibrary
             return fileNameResult;
         }
 
-        // 6.
+        // 6. Imposter Formula
         public static decimal AmongUsImposterFormula(int[] gameStats)
         {
             // Formula for percentage = 100 x (i / p)
@@ -230,7 +241,7 @@ namespace ProgrammingChallengesLibrary
             return imposterPercentage;
         }
 
-        // 7.
+        // 7. Mean Calculator
         public static decimal CalculateTheMean(int[] listOfNumbers)
         {
             // Mean Calculation - add the values together and divide by the total number of values
@@ -238,21 +249,26 @@ namespace ProgrammingChallengesLibrary
             // declaring as decimal so we can get an accurate sum after equation
             decimal totalNumbersInList = listOfNumbers.Length;
             decimal sumOfNumbers = 0.00m;
+            decimal result = 0.00m;
 
-            // get the array and start adding the values together
-            for (int i = 0; i < listOfNumbers.Length; i++)
+            if (totalNumbersInList > 0)
             {
-                sumOfNumbers += listOfNumbers[i];
+                // get the array and start adding the values together
+                for (int i = 0; i < listOfNumbers.Length; i++)
+                {
+                    sumOfNumbers += listOfNumbers[i];
+                }
+
+                // perform mean calculation
+                decimal meanCalculation = sumOfNumbers / totalNumbersInList;
+
+                // output result to 2 decimal places
+                result = Math.Round(meanCalculation, 2);
             }
-
-            // perform mean calculation
-            decimal meanCalculation = sumOfNumbers / totalNumbersInList;
-
-            // output result to 2 decimal places
-            return Math.Round(meanCalculation, 2);
+            return result;
         }
 
-        // 8.
+        // 8. Pin Code Validation
         public static bool PinCodeValidation(string atmInput)
         {
             // variable for correct pin
@@ -271,13 +287,13 @@ namespace ProgrammingChallengesLibrary
             return isValidPin;
         }
 
-        // 9.
+        // 9. Phone Number Validation
         public static bool FormatValidation(string phoneNumberInput)
         {
             // correct format example = (123) 456-7890
 
             // create variable to handle valid or invalid phone number entry
-            bool isValidFormat = false;
+            bool isValidFormat = true;
 
             // negative format validation prior to numerical validation
             if (phoneNumberInput.Length != 14   // check if the input is not 14 characters long
@@ -308,14 +324,17 @@ namespace ProgrammingChallengesLibrary
                             isValidFormat = false;
                             break;
                         }
+                        else
+                        {
+                            // valid execution path - no code to run
+                        }
                     }
                 }
 
             }  
             return isValidFormat;
         }
-
-        // 10.
+        // 10. Prime Number Checker
         public static bool PrimeNumberChecker(int isThisPrime)
         {
             // establish that nothing is prime unless we say so
@@ -338,6 +357,8 @@ namespace ProgrammingChallengesLibrary
             }
             return isPrimeNumber;
         }
+
+        // 11. POKER
 
 
 
