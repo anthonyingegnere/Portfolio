@@ -73,3 +73,13 @@ Console.WriteLine(isFormatVaild);
 int isThisPrime = -7537;
 bool primeCheckerOutput = ProgrammingChallenges.PrimeNumberChecker(isThisPrime);
 Console.WriteLine(primeCheckerOutput);
+
+// Poker Hand Ranking
+string[] pokerHandInput = { "10h", "Jh", "Qh", "Ah", "Kh" };
+string pokerHandCombination = ProgrammingChallenges.PokerHandRanking(pokerHandInput);
+string inputs = "";
+foreach  (string card in pokerHandInput)
+{
+    inputs += card + ",";
+}
+Console.WriteLine($"PokerHandRanking({inputs}) = {pokerHandCombination}");

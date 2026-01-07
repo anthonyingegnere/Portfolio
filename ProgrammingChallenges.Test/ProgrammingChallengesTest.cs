@@ -55,7 +55,7 @@ namespace ProgrammingChallenges.Test
 
 
         // 2. Hacker Speak
-
+       
         [Fact]
         public void ProgrammingChallenges_HackerSpeak_ManyLowerCaseAndUpperCaseCharacters_Success()
         {
